@@ -18,6 +18,10 @@ jobs:
       - name: 'Publish a Release of the App'
         run: |
           dotnet publish -c Release --output '../published-app'
+      - name: 'Azure Login'
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: 'Deploy to Azure App Service: Frontdoor-web-app'
         uses: azure/webapps-deploy@v2
         with:
